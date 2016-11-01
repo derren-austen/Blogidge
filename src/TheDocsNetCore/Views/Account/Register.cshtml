@@ -1,0 +1,54 @@
+﻿@model RegisterViewModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="row">
+    <div class="medium-offset-3 medium-6 end columns">
+        <h2>@ViewData["Title"]</h2>
+    </div>
+</div>
+
+<form asp-controller="Account" asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
+
+    <div class="row">
+        <div class="medium-offset-3 medium-6 end columns">
+            <div asp-validation-summary="All"></div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="medium-offset-3 medium-6 end columns">
+            <label asp-for="Email"></label>
+            <input asp-for="Email" placeholder="Enter email" />
+            <span asp-validation-for="Email"></span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="medium-offset-3 medium-6 end columns">
+            <label asp-for="Password"></label>
+            <input asp-for="Password" placeholder="Enter password" />
+            <span asp-validation-for="Password"></span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="medium-offset-3 medium-6 end columns">
+            <label asp-for="ConfirmPassword"></label>
+            <input asp-for="ConfirmPassword" placeholder="Enter confirm password" />
+            <span asp-validation-for="ConfirmPassword"></span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="medium-offset-3 medium-6 end columns">
+            <button type="submit" class="button">Register</button>
+        </div>
+    </div>
+
+</form>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

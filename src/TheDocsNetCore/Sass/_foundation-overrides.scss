@@ -1,0 +1,70 @@
+﻿@import "../wwwroot/lib/foundation-sites/scss/foundation.scss";
+@import "_variables";
+
+@include breakpoint(small only) {
+    .top-bar {
+        display: none;
+    }
+}
+
+@include breakpoint(medium) {
+    .title-bar {
+        display: none;
+    }
+}
+
+.row{
+    max-width: 100rem;
+}
+
+.top-bar{
+    background-color: $topBarBackgroundColor;
+
+    ul{
+        background-color: $topBarBackgroundColor;
+    }
+}
+
+.top-bar-left, .top-bar-right, .menu-centered{
+    a {
+        color: $topBarLinkColor;
+    }
+
+    .menu-text{
+        color: $topBarLinkColor;
+    }
+
+    button, a.button{
+        background-color: $topBarButtonColor;
+
+        &:hover{
+            background-color: darken($topBarButtonColor, 10%);
+        }
+    }
+}
+
+.menu > li > a.logo-link{
+    padding: 0;
+}
+
+// tooltip overrides
+
+.tooltip {
+    background-color: $tooltipBackgroundColour;
+
+    &::before{
+        border-color: transparent transparent $tooltipBackgroundColour;
+    }
+
+    &.top::before{
+        border-color: $tooltipBackgroundColour transparent transparent;
+    }
+
+    &.left::before{
+        border-color: transparent transparent transparent $tooltipBackgroundColour;
+    }
+
+    &.right::before{
+        border-color: transparent $tooltipBackgroundColour transparent transparent;
+    }
+}

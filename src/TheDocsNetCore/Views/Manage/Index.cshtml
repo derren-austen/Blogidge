@@ -1,0 +1,36 @@
+﻿@model IndexViewModel
+@{
+    ViewData["Title"] = "Manage your account";
+}
+
+<div class="row">
+    <div class="medium-offset-3 medium-6 end columns">
+        <h2>@ViewData["Title"]</h2>
+    </div>
+</div>
+
+<div class="row">
+    <div class="medium-offset-3 medium-6 end columns">
+        @ViewData["StatusMessage"]
+    </div>
+</div>
+
+<div class="row">
+    <div class="medium-offset-3 medium-6 end columns">
+        <h4>Change your account settings</h4>
+    </div>
+</div>
+
+<div class="row">
+    <div class="medium-offset-3 medium-6 end columns">
+        <label><strong>Password:</strong></label>
+        @if (Model.HasPassword)
+            {
+            <a asp-controller="Manage" asp-action="ChangePassword" class="btn-bracketed">Change</a>
+        }
+        else
+        {
+            <a asp-controller="Manage" asp-action="SetPassword" class="btn-bracketed">Create</a>
+        }
+    </div>
+</div>

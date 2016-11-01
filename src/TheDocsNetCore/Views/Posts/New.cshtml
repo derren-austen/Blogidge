@@ -1,0 +1,64 @@
+@model TheDocsNetCore.Models.BlogidgeViewModels.PostViewModel
+
+@{
+    ViewData["Title"] = "New post";
+}
+
+<div class="row">
+    <div class="medium-12 columns">
+        <h2>Let's create a new post</h2>
+    </div>
+</div>
+
+<form asp-controller="Posts" asp-action="New">
+    
+    <div class="row">
+        <div class="medium-12 columns">
+            <label asp-for="Title"></label>
+            <input asp-for="Title" placeholder="Enter title">
+            <span asp-validation-for="Title"></span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="medium-12 columns">
+            <label asp-for="Slug"></label>
+            <input asp-for="Slug" placeholder="Enter slug">
+            <span asp-validation-for="Slug"></span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="medium-12 columns">
+            <label asp-for="MarkDownContent"></label>
+            <textarea asp-for="MarkDownContent" rows="15" placeholder="Enter markdown"></textarea>
+            <span asp-validation-for="MarkDownContent"></span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="medium-4 columns">
+            <label asp-for="Status"></label>
+            <select asp-for="Status" asp-items="ViewBag.StatusSelect"></select>
+        </div>
+        <div class="medium-4 columns">
+            <label asp-for="ReleaseDate"></label>
+            <input asp-for="ReleaseDate" placeholder="Enter release date" type="date">
+        </div>
+        <div class="medium-4 columns">
+            <label asp-for="SeriesID"></label>
+            <select asp-for="SeriesID" asp-items="ViewBag.SeriesSelect"><option value="0">Enter series</option></select>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="medium-12 columns">
+            <button type="submit" class="button">Create</button>
+        </div>
+    </div>
+
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,54 @@
+@model TheDocsNetCore.Models.Post
+
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+<div class="home-bg-image">
+    <div class="row">
+        <div class="medium-12 columns end hero-title-box">
+            <h1 class="text-center">@Model.Title</h1>
+            @if (User.Identity.IsAuthenticated && (User.HasClaim("EditPosts", "Admin") || User.HasClaim("EditPosts", "Creator")))
+            {
+                <h3 class="text-center">(@Model.Status)</h3>
+            }
+            @if (@Model.Series != null)
+            {
+                <h3 class="text-center">Part of the <a asp-controller="Blog" asp-action="AllPostsInSeries" asp-route-id="@Model.Series.ID"><strong>@Model.Series.Name</strong></a> series</h3>
+            }
+            <div class="author-info">
+                <span>by @Model.User.FirstName</span>
+                <span>&nbsp;|&nbsp;</span>
+                <span><i class="fa fa-clock-o"></i> @string.Format("{0:dd MMM yyyy}", @Model.ReleaseDate)</span>
+                @if (@Model.Comments.Count() > 0)
+                {
+                    <span>&nbsp;|&nbsp;</span>
+                    <span><i class="fa fa-comments"></i> @Model.Comments.Count() Comments</span>
+                }
+                @if (User.Identity.IsAuthenticated && (User.HasClaim("EditPosts", "Admin") || User.HasClaim("EditPosts", "Creator")))
+                {
+                    <span>&nbsp;|&nbsp;</span>
+                    <a asp-controller="Posts" asp-action="Update" asp-route-id="@Model.PostID">Edit post</a>
+                    <span>&nbsp;|&nbsp;</span>
+                    <a asp-controller="Posts" asp-action="New">Create post</a>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="medium-offset-2 medium-8 end columns body-copy">
+        @Model.Content.ToHTMLString()
+    </div>
+</div>
+
+@if (Model.Series != null)
+{
+    <div class="row">
+        <div class="medium-offset-2 medium-8 end columns in-series">
+            <h4>OTHER POSTS IN THE SERIES</h4>
+            @await Component.InvokeAsync("PostsInSeries", new { seriesID = Model.Series.ID, postID = Model.PostID })
+        </div>
+    </div>
+}

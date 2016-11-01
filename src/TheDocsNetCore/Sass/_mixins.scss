@@ -1,0 +1,14 @@
+﻿
+@mixin logo-image($image, $width, $height){
+    background-image: url($image);
+    background-repeat: no-repeat;
+    width: $width;
+    height: $height;
+}
+
+@mixin center-absolute{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

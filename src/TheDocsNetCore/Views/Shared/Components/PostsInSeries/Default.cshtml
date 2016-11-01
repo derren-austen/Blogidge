@@ -1,0 +1,22 @@
+﻿@model IEnumerable<TheDocsNetCore.Models.Post>
+
+@if (Model.Count() > 0)
+{
+    @foreach (var item in Model)
+    {
+        <p>
+            <a asp-controller="Blog" asp-action="Index" asp-route-id="@item.PostID" asp-route-slug="@item.Slug" class="has-tip right" data-tooltip aria-haspopup="true" data-disable-hover="false" title="@string.Format("{0:dd MMM yyyy}", @item.ReleaseDate) by @item.User.FirstName">
+                @if (Convert.ToInt32(ViewData["ThisOne"]) == item.PostID)
+                {
+                    <span class="text-uppercase">@item.Title <i class="fa fa-eye" aria-hidden="true"></i></span>
+                }
+                else
+                {
+                    <span class="text-uppercase">@item.Title</span>
+                }
+                <br />
+                <span class="link-colour">Read more</span>
+            </a>
+        </p>
+    }
+}

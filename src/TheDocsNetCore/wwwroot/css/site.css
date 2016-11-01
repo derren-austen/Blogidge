@@ -1,0 +1,194 @@
+﻿/*@font-face {
+    font-family: 'droid_sansregular';
+    src: url('/fonts/DroidSans-webfont.eot');
+    src: url('/fonts/DroidSans-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/DroidSans-webfont.woff') format('woff'),
+         url('/fonts/DroidSans-webfont.ttf') format('truetype'),
+         url('/fonts/DroidSans-webfont.svg#droid_sansregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'droid_sansbold';
+    src: url('/fonts/DroidSans-Bold-webfont.eot');
+    src: url('/fonts/DroidSans-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/DroidSans-Bold-webfont.woff') format('woff'),
+         url('/fonts/DroidSans-Bold-webfont.ttf') format('truetype'),
+         url('/fonts/DroidSans-Bold-webfont.svg#droid_sansbold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}*/
+.wrap-long-word {
+  overflow-wrap: break-word;
+  -ms-word-wrap: break-word;
+  word-wrap: break-word;
+  -ms-word-break: break-all;
+  word-break: break-all;
+  word-break: break-word;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto; }
+
+.text-uppercase {
+  text-transform: uppercase; }
+
+div[data-sticky-container] > .top-bar {
+  width: 100%;
+  z-index: 10; }
+
+/**
+ * Foundation for Sites by ZURB
+ * Version 6.2.3
+ * foundation.zurb.com
+ * Licensed under MIT Open Source
+ */
+@media screen and (max-width: 39.9375em) {
+  .top-bar {
+    display: none; } }
+
+@media screen and (min-width: 40em) {
+  .title-bar {
+    display: none; } }
+
+.row {
+  max-width: 100rem; }
+
+.top-bar {
+  background-color: #0187ad; }
+  .top-bar ul {
+    background-color: #0187ad; }
+
+.top-bar-left a, .top-bar-right a, .menu-centered a {
+  color: #fff; }
+
+.top-bar-left .menu-text, .top-bar-right .menu-text, .menu-centered .menu-text {
+  color: #fff; }
+
+.top-bar-left button, .top-bar-left a.button, .top-bar-right button, .top-bar-right a.button, .menu-centered button, .menu-centered a.button {
+  background-color: #005d8b; }
+  .top-bar-left button:hover, .top-bar-left a.button:hover, .top-bar-right button:hover, .top-bar-right a.button:hover, .menu-centered button:hover, .menu-centered a.button:hover {
+    background-color: #003b58; }
+
+.menu > li > a.logo-link {
+  padding: 0; }
+
+.tooltip {
+  background-color: #018fb7; }
+  .tooltip::before {
+    border-color: transparent transparent #018fb7; }
+  .tooltip.top::before {
+    border-color: #018fb7 transparent transparent; }
+  .tooltip.left::before {
+    border-color: transparent transparent transparent #018fb7; }
+  .tooltip.right::before {
+    border-color: transparent #018fb7 transparent transparent; }
+
+body, h1, h2, h3, h4, h5, h6 {
+  font-family: "Raleway", sans-serif;
+  color: #2f2f2f; }
+
+div.header {
+  font-family: "Montserrat", sans-serif; }
+
+/*input,
+select,
+textarea {
+    max-width: 280px;
+}*/
+p {
+  margin-top: 1rem; }
+
+.home-bg-image {
+  background: url(/images/pexels-photo.jpg) no-repeat #090401;
+  background-size: cover; }
+
+.hero-title-box > h1 {
+  color: #fff;
+  text-transform: uppercase;
+  margin: 2rem 0;
+  font-family: "Montserrat", sans-serif; }
+
+.hero-title-box > h3 {
+  color: #fff; }
+
+.hero-title-box > p {
+  color: #fff; }
+
+.hero-title-box > div.author-info {
+  color: #fff;
+  text-align: center;
+  margin: 1rem 0;
+  font-family: "Montserrat", sans-serif; }
+
+.hero-title-box a {
+  color: #fff; }
+  .hero-title-box a:hover {
+    text-decoration: underline; }
+
+.body-copy > p {
+  font-size: 1.2rem; }
+
+section {
+  padding: 50px 0; }
+
+.top-bar-pre, .top-bar-post {
+  background-color: #003848; }
+  .top-bar-pre ul, .top-bar-post ul {
+    background-color: #003848; }
+
+.top-bar-post a {
+  font-size: 0.8em; }
+
+.title-topbar {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  text-transform: uppercase; }
+
+.logo {
+  background-image: url("/images/blogidge-logo-inline.png");
+  background-repeat: no-repeat;
+  width: 38px;
+  height: 38px;
+  display: inline-block; }
+
+.menu-logo a {
+  display: block;
+  margin-left: 10px;
+  background-image: url("/images/blogidge-logo.png");
+  background-repeat: no-repeat;
+  width: 38px;
+  height: 38px; }
+
+.field-validation-error {
+  color: #ff6a00; }
+
+pre[class*="language-"] {
+  border-left: 10px solid #0187ad; }
+
+pre[class*="language-"]:before, pre[class*="language-"]:after {
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none; }
+
+code {
+  border: none; }
+
+.in-series {
+  margin-top: 50px; }
+  .in-series span {
+    color: #2f2f2f; }
+  .in-series .link-colour {
+    color: #2199e8; }
+  .in-series .has-tip {
+    border-bottom: none;
+    font-weight: normal;
+    cursor: pointer; }
+
+.all-posts h4 {
+  text-transform: uppercase; }
+

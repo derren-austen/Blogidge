@@ -1,0 +1,29 @@
+@model IEnumerable<TheDocsNetCore.Models.Post>
+
+@{
+    ViewData["Title"] = "All posts";
+}
+
+<div class="row">
+    <div class="medium-offset-2 medium-8 end columns">
+        <h2>All our posts</h2>
+    </div>
+</div>
+
+@foreach (var item in Model)
+{
+    <div class="row">
+        <div class="medium-offset-2 medium-8 end columns all-posts">
+            <h4>@item.Title</h4>
+            @if (item.Series != null)
+            {
+                <h5>Part of the <a asp-controller="Blog" asp-action="AllPostsInSeries" asp-route-id="@item.SeriesID"><strong>@item.Series.Name</strong></a> series</h5>
+            }
+            <span>by @item.User.FirstName</span>
+            <span>&nbsp;|&nbsp;</span>
+            <span><i class="fa fa-clock-o"></i> @string.Format("{0:dd MMM yyyy}", @item.ReleaseDate)</span>
+            <p><a asp-controller="Blog" asp-action="Index" asp-route-id="@item.PostID" asp-route-slug="@item.Slug">Read more</a></p>
+            <hr />
+        </div>
+    </div>
+}

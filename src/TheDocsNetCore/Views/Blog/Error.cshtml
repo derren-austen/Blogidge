@@ -1,0 +1,44 @@
+﻿@model int
+@{
+    ViewData["Title"] = "Error";
+}
+
+<div class="row">
+    <div class="medium-offset-2 medium-8 end columns">
+        <h1>Good grief, what's happened here?!</h1>
+    </div>
+</div>
+
+@{
+    if (ViewData["Oops"] != null)
+    {
+
+        <div class="row">
+            <div class="medium-offset-2 medium-8 end columns">
+                <h3>@ViewData["Oops"]</h3>
+            </div>
+        </div>
+
+    }
+    else
+    {
+        <div class="row">
+            <div class="medium-offset-2 medium-8 end columns">
+                @{
+                    switch (Model)
+                    {
+                        case 404:
+                            <h3><strong>404</strong>.  If you're a man it's probably right there in front of you, otherwise it's definitely missing!</h3>
+                            break;
+                        case 500:
+                            <h3><strong>500</strong>.  Something terrible has happened!</h3>
+                            break;
+                        default:
+                            <h3><strong>@Model</strong>. You're not a messiah, you're a very naughty boy (or girl)!</h3>
+                            break;
+                    }
+                }
+            </div>
+        </div>
+    }
+}

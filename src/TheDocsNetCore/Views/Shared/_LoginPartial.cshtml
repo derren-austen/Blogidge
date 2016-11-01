@@ -1,0 +1,26 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using TheDocsNetCore.Models
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <form asp-area="" asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm-@ViewData["LoginID"]" style="@ViewData["Style"]">
+        <ul class="menu">
+            <li>
+                <a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage">Hello @UserManager.GetUserAsync(User).Result.FirstName!</a>
+            </li>
+            <li>
+                <button type="submit" class="button">Log off</button>
+            </li>
+        </ul>
+    </form>
+}
+else
+{
+    <ul class="menu" id="logoutForm-@ViewData["LoginID"]" style="@ViewData["Style"]">
+        @*<li><a asp-area="" asp-controller="Account" asp-action="Register">Register</a></li>*@
+        <li><a asp-area="" asp-controller="Account" asp-action="Login">Log in</a></li>
+    </ul>
+}

@@ -1,0 +1,153 @@
+﻿@import "_typography";
+@import "_variables";
+@import "_toolbar";
+@import "_mixins";
+
+@import "_foundation-overrides";
+
+body, h1, h2, h3, h4, h5, h6 {
+    font-family: $fontFamily;
+    color: $fontColor;
+}
+
+div.header {
+    font-family: $fontFamilyHeader;
+}
+
+/*input,
+select,
+textarea {
+    max-width: 280px;
+}*/
+
+p {
+    margin-top: 1rem;
+}
+
+.home-bg-image {
+    background: url(/images/pexels-photo.jpg) no-repeat rgba(9, 4, 1, 1);
+    background-size: cover;
+}
+
+.hero-title-box {
+
+    > h1 {
+        color: #fff;
+        text-transform: uppercase;
+        margin: 2rem 0;
+        font-family: $fontFamilyHeader;
+    }
+
+    > h3 {
+        color: #fff;
+    }
+
+    > p {
+        color: #fff;
+    }
+
+    > div.author-info {
+        color: #fff;
+        text-align: center;
+        margin: 1rem 0;
+        font-family: $fontFamilyHeader;
+    }
+
+    a {
+        color: #fff;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+.body-copy {
+    > p {
+        font-size: 1.2rem;
+    }
+}
+
+section {
+    padding: 50px 0;
+}
+
+.top-bar-pre, .top-bar-post {
+    background-color: $topPrePostBarBackgroundColor;
+
+    ul {
+        background-color: $topPrePostBarBackgroundColor;
+    }
+}
+
+.top-bar-post {
+    a {
+        font-size: 0.8em;
+    }
+}
+
+.title-topbar{
+    @include center-absolute;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.logo {
+    @include logo-image($logoInline, $logoWidth, $logoHeight);
+    display: inline-block;
+}
+
+.menu-logo {
+
+    a {
+        display: block;
+        margin-left: 10px;
+        @include logo-image($logo, $logoWidth, $logoHeight);
+    }
+}
+
+.field-validation-error {
+    color: $invalidTextColour;
+}
+
+// prism.js overrides - start
+
+pre[class*="language-"] {
+    border-left: 10px solid $topBarBackgroundColor;
+}
+
+pre[class*="language-"]:before, pre[class*="language-"]:after {
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+code{
+    border: none;
+}
+
+// prism.js overrides - end
+
+.in-series{
+    margin-top: 50px;
+
+    span {
+        color: $fontColor;
+    }
+
+    .link-colour{
+        color: $anchor-color;
+    }
+
+    .has-tip{
+        border-bottom: none;
+        font-weight: normal;
+        cursor: pointer;
+    }
+}
+
+.all-posts{
+    h4{
+        text-transform: uppercase;
+    }
+}

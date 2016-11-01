@@ -1,0 +1,19 @@
+﻿$fontFamilyHeader: 'Montserrat', sans-serif;
+$fontFamily: 'Raleway', sans-serif;
+
+$fontColor: #2f2f2f;
+
+$topBarBackgroundColor: #0187ad;
+$topBarLinkColor: #fff;
+$topBarButtonColor: #005d8b;
+
+$topPrePostBarBackgroundColor: darken($topBarBackgroundColor, 20%);
+
+$logo: '/images/blogidge-logo.png';
+$logoInline: '/images/blogidge-logo-inline.png';
+$logoWidth: 38px;
+$logoHeight: 38px;
+
+$invalidTextColour: #ff6a00;
+
+$tooltipBackgroundColour: lighten($topBarBackgroundColor, 2%);

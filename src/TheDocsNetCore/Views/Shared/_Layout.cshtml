@@ -1,0 +1,145 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BLOGIDGE - @ViewData["Title"]</title>
+
+    <link rel="shortcut icon" href="~/favicon.ico" />
+    <link rel="icon" type="image/png" href="~/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="~/favicon-16x16.png" sizes="16x16" />
+
+    <environment names="Development">
+        <link href="~/lib/foundation-sites/dist/foundation.css" rel="stylesheet" />
+        <link href="~/lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
+        <link href="~/lib/animate.css/animate.css" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+        <link href="~/lib/angularjs/angular-csp.css" rel="stylesheet" />
+        <link href="~/lib/prism/themes/prism-coy.css" rel="stylesheet" />
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
+    <environment names="Staging,Production">
+        <link href="~/lib/foundation-sites/dist/foundation.min.css" rel="stylesheet" />
+        <link href="~/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+        <link href="~/lib/animate.css/animate.min.css" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+        <link href="~/lib/angularjs/angular-csp.css" rel="stylesheet" />
+        <link href="~/lib/prism/themes/prism-coy.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
+</head>
+<body>
+    
+    <div class="header">
+
+        <div class="title-bar" data-responsive-toggle="main-menu" data-hide-for="medium">
+            <button class="menu-icon" type="button" data-toggle></button>
+            <div class="title-bar-title">Mmm, hamburger!</div>
+        </div>
+
+        <div class="top-bar top-bar-pre">
+            <div class="row">
+                <!-- this ensures the menu items are not butted up to the left/right but aligned with the grid -->
+                <div class="top-bar-left">
+                    <ul class="dropdown menu" data-dropdown-menu>
+                        <li class="menu-logo"><a href="~/"></a></li>
+                    </ul>
+                </div>
+                <div class="top-bar-right">
+                    @{
+                        ViewData["LoginID"] = "top";
+                        ViewData["Style"] = "";
+                    }
+                    @await Html.PartialAsync("_LoginPartial")
+                </div>
+            </div>
+        </div>
+
+        <div data-sticky-container>
+            <div class="top-bar" id="main-menu" data-sticky data-top-anchor="main-menu:top" data-options="marginTop:0;">
+                <div class="row">
+                    <!-- this ensures the menu items are not butted up to the left/right but aligned with the grid -->
+                    <div class="top-bar-left">
+                        <ul class="dropdown menu" data-dropdown-menu>
+                            <li><a href="~/" class="logo-link"><span class="logo" id="logo" style="display: none;"></span><strong id="app-name">BLOGIDGE</strong></a></li>
+                            <li><a asp-controller="Blog" asp-action="AllPosts">All posts</a></li>
+                            @if (User.Identity.IsAuthenticated && User.HasClaim("PowerLevel", "FullyCharged"))
+                            {
+                                <li><a asp-controller="Admin" asp-action="Index" class="button">Administrator's corner</a></li>
+                            }
+                        </ul>
+                    </div>
+                    <div class="title-topbar" id="title-topbar" style="display: none;">@ViewData["Title"]</div>
+                    <div class="top-bar-right">
+                        @{
+                            ViewData["LoginID"] = "bottom";
+                            ViewData["Style"] = "display: none;";
+                        }
+
+                        @await Html.PartialAsync("_LoginPartial")
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div>
+        @RenderBody()
+    </div>
+
+    <footer>
+        <div class="row">
+            <div class="medium-offset-2 medium-8 end columns">
+                <p class="text-left">&copy; BLOGIDGE @DateTime.Now.Year</p>
+            </div>
+        </div>
+    </footer>
+
+    <environment names="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/foundation-sites/dist/foundation.js"></script>
+        <script src="~/lib/angularjs/angular.js"></script>
+        <script src="~/lib/prism/prism.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery">
+        </script>
+        <script src="~/lib/foundation-sites/dist/foundation.min.js"></script>
+        <script src="~/lib/angularjs/angular.min.js"></script>
+        <script src="~/lib/prism/prism.min.js"></script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>
+
+    @RenderSection("scripts", required: false)
+
+    <script>
+        (function () {
+
+            var animateShowFx = 'slideInDown', animateHideFx = 'slideOutUp';
+
+            $('.top-bar').on('sticky.zf.stuckto:top', function () {
+                $('#logoutForm-bottom').addClass('animated ' + animateShowFx);
+                $('#logoutForm-bottom').show();
+                $('#app-name').hide();
+                $('#logo').addClass('animated ' + animateShowFx);
+                $('#logo').show();
+                $('#title-topbar').show();
+            }).on('sticky.zf.unstuckfrom:top', function () {
+                $('#logoutForm-bottom').removeClass(animateShowFx);
+                $('#logoutForm-bottom').hide();
+                $('#app-name').show();
+                $('#logo').removeClass(animateShowFx);
+                $('#logo').hide();
+                $('#title-topbar').hide();
+            })
+
+        })();
+    </script>
+</body>
+</html>
