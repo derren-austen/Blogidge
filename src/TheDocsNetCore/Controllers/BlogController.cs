@@ -30,16 +30,16 @@ namespace TheDocsNetCore.Controllers
 
             if (id == null)
             {
-                post = _postRepo.GetLatestPost(User.Identity.IsAuthenticated && (User.HasClaim("ViewPosts", "Viewer") || User.HasClaim("EditPosts", "Admin") || User.HasClaim("EditPosts", "Creator")));
+                List<Post> posts = _postRepo.GetAllPosts(User.Identity.IsAuthenticated && (User.HasClaim("ViewPosts", "Viewer") || User.HasClaim("EditPosts", "Admin") || User.HasClaim("EditPosts", "Creator")));
 
-                if (post == null)
+                if (posts.Count == 0)
                 {
                     ViewData["Oops"] = "There aren't any posts, dang!";
 
                     return View("Error");
                 }
 
-                return View(post);
+                return View("Home", posts);
             }
 
             post = _postRepo.GetPost(id);
