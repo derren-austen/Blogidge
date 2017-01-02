@@ -13,13 +13,11 @@ namespace TheDocsNetCore.Data
         }
 
         public DbSet<Post> Posts { get; set; }
-        public DbSet<Comment> Comments { get; set; }
         public DbSet<Series> Series { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<Post>().Property(p => p.Created).HasDefaultValueSql("getdate()");
-            builder.Entity<Comment>().Property(p => p.Created).HasDefaultValueSql("getdate()");
 
             base.OnModelCreating(builder);
         }

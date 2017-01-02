@@ -5,7 +5,7 @@ namespace TheDocsNetCore.Data
 {
     public interface IPostRepo
     {
-        List<Post> GetAllPosts (bool userAuthenticated = false);
+        List<Post> GetAllPosts (int page, bool userAuthenticated = false);
 
         Post GetPost (int? postID);
 

@@ -2,6 +2,6 @@
 {
     public class AppSettings
     {
-        public int TopRecentArticles { get; set; }
+        public int PostsPerPage { get; set; }
     }
 }

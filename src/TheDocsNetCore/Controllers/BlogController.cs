@@ -20,7 +20,7 @@ namespace TheDocsNetCore.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index(int? id, string slug)
+        public IActionResult Index(int? id, string slug, int? page)
         {
             //TODO: abstract the claims level access stuff to a filter
             
@@ -30,7 +30,7 @@ namespace TheDocsNetCore.Controllers
 
             if (id == null)
             {
-                List<Post> posts = _postRepo.GetAllPosts(User.Identity.IsAuthenticated && (User.HasClaim("ViewPosts", "Viewer") || User.HasClaim("EditPosts", "Admin") || User.HasClaim("EditPosts", "Creator")));
+                List<Post> posts = _postRepo.GetAllPosts(page ?? 1, User.Identity.IsAuthenticated && (User.HasClaim("ViewPosts", "Viewer") || User.HasClaim("EditPosts", "Admin") || User.HasClaim("EditPosts", "Creator")));
 
                 if (posts.Count == 0)
                 {
@@ -108,9 +108,9 @@ namespace TheDocsNetCore.Controllers
             return View(post);
         }
 
-        public IActionResult AllPosts ()
+        public IActionResult AllPosts (int? page)
         {
-            List<Post> posts = _postRepo.GetAllPosts(User.Identity.IsAuthenticated && (User.HasClaim("ViewPosts", "Viewer") || User.HasClaim("EditPosts", "Admin") || User.HasClaim("EditPosts", "Creator")));
+            List<Post> posts = _postRepo.GetAllPosts(page ?? 1, User.Identity.IsAuthenticated && (User.HasClaim("ViewPosts", "Viewer") || User.HasClaim("EditPosts", "Admin") || User.HasClaim("EditPosts", "Creator")));
 
             return View(posts);
         }

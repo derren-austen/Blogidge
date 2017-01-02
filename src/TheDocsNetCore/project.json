@@ -44,7 +44,8 @@
       "type": "build"
     },
     "CommonMark.NET": "0.12.0",
-    "Microsoft.AspNetCore.Rewrite": "1.0.0"
+    "Microsoft.AspNetCore.Rewrite": "1.0.0",
+    "Microsoft.AspNetCore.Mvc.TagHelpers": "1.0.1"
   },
 
   "tools": {

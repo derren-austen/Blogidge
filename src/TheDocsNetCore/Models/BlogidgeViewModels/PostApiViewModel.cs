@@ -13,6 +13,5 @@ namespace TheDocsNetCore.Models.BlogidgeViewModels
         public DateTime Updated { get; set; }
         public DateTime? ReleaseDate { get; set; }
         public string Series { get; set; }
-        public List<Comment> Comments { get; set; }
     }
 }

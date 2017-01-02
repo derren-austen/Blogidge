@@ -34,7 +34,6 @@ namespace TheDocsNetCore.Models
         public string MarkDownTeaserText { get; set; }
         public int? SeriesID { get; set; }
 
-        public List<Comment> Comments { get; set; }
         [ForeignKey("Author")]
         public ApplicationUser User { get; set; }
         public Series Series { get; set; }

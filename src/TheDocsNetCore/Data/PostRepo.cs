@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +10,12 @@ namespace TheDocsNetCore.Data
     public class PostRepo : IPostRepo
     {
         private readonly ApplicationDbContext _context;
+        private readonly AppSettings _appSettings;
 
-        public PostRepo (ApplicationDbContext context)
+        public PostRepo (ApplicationDbContext context, IOptions<AppSettings> appSettings)
         {
             _context = context;
+            _appSettings = appSettings.Value;
         }
 
         public int CreatePost (Post post)
@@ -29,25 +32,30 @@ namespace TheDocsNetCore.Data
             _context.SaveChanges();
         }
 
-        public List<Post> GetAllPosts (bool userAuthenticated = false)
+        public List<Post> GetAllPosts (int page, bool userAuthenticated = false)
         {
             List<Post> posts;
+
+            int pageNo = 0;
+            if (page > 0) pageNo = page - 1;
 
             if (userAuthenticated)
                 posts = _context.Posts
                                 .Include(p => p.User)
-                                .Include(c => c.Comments)
                                 .Include(s => s.Series)
                                 .Where(p => p.ReleaseDate <= DateTime.Now && (p.Status == PostStatus.Private || p.Status == PostStatus.Public))
                                 .OrderByDescending(p => p.ReleaseDate)
+                                .Skip(pageNo * _appSettings.PostsPerPage)
+                                .Take(_appSettings.PostsPerPage)
                                 .ToList();
             else
                 posts = _context.Posts
                                 .Include(p => p.User)
-                                .Include(c => c.Comments)
                                 .Include(s => s.Series)
                                 .Where(p => p.ReleaseDate <= DateTime.Now && p.Status == PostStatus.Public)
                                 .OrderByDescending(p => p.ReleaseDate)
+                                .Skip(pageNo * _appSettings.PostsPerPage)
+                                .Take(_appSettings.PostsPerPage)
                                 .ToList();
 
             return (posts);
@@ -60,7 +68,6 @@ namespace TheDocsNetCore.Data
             if (userAuthenticated)
                 post = _context.Posts
                                .Include(p => p.User)
-                               .Include(c => c.Comments)
                                .Include(s => s.Series)
                                .Where(p => p.ReleaseDate <= DateTime.Now && (p.Status == PostStatus.Private || p.Status == PostStatus.Public))
                                .OrderByDescending(p => p.ReleaseDate)
@@ -69,7 +76,6 @@ namespace TheDocsNetCore.Data
             else
                 post = _context.Posts
                                .Include(p => p.User)
-                               .Include(c => c.Comments)
                                .Include(s => s.Series)
                                .Where(p => p.ReleaseDate <= DateTime.Now && p.Status == PostStatus.Public)
                                .OrderByDescending(p => p.ReleaseDate)
@@ -83,7 +89,6 @@ namespace TheDocsNetCore.Data
         {
             Post post = _context.Posts
                                 .Include(p => p.User)
-                                .Include(p => p.Comments)
                                 .Include(s => s.Series)
                                 .Where(p => p.PostID == postID)
                                 .FirstOrDefault();
